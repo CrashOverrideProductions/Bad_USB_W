@@ -55,6 +55,7 @@ The software for this project is a modified version of the WiFi Duck firmware de
 |===================|=================|=============|
 | SCL               | GPIO-22         | I2C SCL     |
 | SDA               | GPIO-21         | I2C SDA     |
+| GND               | GND             | GND         |
 ```
 
 <!-- Licencing Always at the Bottom -->
