@@ -21,8 +21,8 @@ This can be a vector for malicious code, and is potentially dangerous and destru
 ---
 <!-- To Do List -->
 ### To Do List
-- [x] Complete Readme.md
-- [ ] Build & Test Prototype
+- [X] Complete Readme.md
+- [X] Build & Test Prototype
 - [ ] Design Schematic
 - [ ] Finalise Software
 - [ ] Design Board
@@ -32,12 +32,18 @@ This can be a vector for malicious code, and is potentially dangerous and destru
 
 ---
 ### Prototype Design
+
+<img align="center" src="https://raw.githubusercontent.com/CrashOverrideProductions/Bad_USB_W/main/images/proto1.jpg"/>
+
 ```
 images go here
 ```
 ##### BOM
 ```
-BOM goes here
+| COMPONENT         | QTY | AUD$   |
+|===================|=====|========|
+| ESP32 DEVKIT V1   |  1  | $39.95 |
+| ARDUINO LEONARDO  |  1  | $29.95 |
 ```
 
 ##### Software
@@ -45,14 +51,11 @@ The software for this project is a modified version of the WiFi Duck firmware de
 
 ##### Hardware Configuration
 ```
-Config Goes Here
+| LEONARDO          | ESP32 DEVKIT V1 | SIGNAL NAME |
+|===================|=================|=============|
+| SCL               | GPIO-22         | I2C SCL     |
+| SDA               | GPIO-21         | I2C SDA     |
 ```
-
----
-### Proof of Concept 
-Images / Screenshots, etc
-##### Images
-##### Screenshots
 
 <!-- Licencing Always at the Bottom -->
 ------------
