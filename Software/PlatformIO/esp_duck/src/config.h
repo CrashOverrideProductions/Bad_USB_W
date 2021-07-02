@@ -19,8 +19,8 @@
 
 #define ENABLE_I2C
 #define I2C_ADDR 0x31
-#define I2C_SDA 4
-#define I2C_SCL 5
+#define I2C_SDA 21
+#define I2C_SCL 22
 #define I2C_CLOCK_SPEED 100000L
 
 #define BUFFER_SIZE 384

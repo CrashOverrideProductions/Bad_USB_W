@@ -1,0 +1,198 @@
+
+Processing esp32doit-devkit-v1 (platform: espressif32; board: esp32doit-devkit-v1; framework: arduino)
+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32doit-devkit-v1.html
+PLATFORM: Espressif 32 (3.2.1) > DOIT ESP32 DEVKIT V1
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (esp-prog) External (esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+PACKAGES:
+ - framework-arduinoespressif32 3.10006.210326 (1.0.6)
+ - tool-esptoolpy 1.30000.201119 (3.0.0)
+ - toolchain-xtensa32 2.50200.97 (5.2.0)
+LDF: Library Dependency Finder -> http://bit.ly/configure-pio-ldf
+LDF Modes: Finder ~ chain, Compatibility ~ soft
+Found 31 compatible libraries
+Scanning dependencies...
+Dependency Graph
+|-- <SimpleCLI> 1.1.1
+|-- <ESP Async WebServer> 1.2.3
+|   |-- <AsyncTCP> 1.1.1       
+|   |-- <FS> 1.0
+|   |-- <WiFi> 1.0
+|-- <Wire> 1.0.1
+|-- <ArduinoOTA> 1.0
+|   |-- <Update> 1.0
+|   |-- <WiFi> 1.0
+|   |-- <ESPmDNS> 1.0
+|   |   |-- <WiFi> 1.0
+|-- <AsyncTCP> 1.1.1
+|-- <DNSServer> 1.1.0
+|   |-- <WiFi> 1.0
+|-- <ESPmDNS> 1.0
+|   |-- <WiFi> 1.0
+|-- <WiFi> 1.0
+Building in release mode
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\EEPROM.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\FS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\SPIFFS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\vfs_api.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\cli.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\com.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\duckscript.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\eeprom.cpp.o
+src\com.cpp: In function 'void com::i2c_begin()':
+src\com.cpp:113:23: warning: unused variable 'start_time' [-Wunused-variable]
+         unsigned long start_time = millis();
+                       ^
+src\cli.cpp: In lambda function:
+src\cli.cpp:84:30: warning: 'uint32_t system_get_free_heap_size()' is deprecated [-Wdeprecated-declarations]
+             size_t freeRam = system_get_free_heap_size();
+                              ^
+In file included from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/portable.h:128:0,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/FreeRTOS.h:105,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32/Arduino.h:32,
+                 from src\cli.h:10,
+                 from src\cli.cpp:8:
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\esp32/esp_system.h:152:10: note: declared here
+ uint32_t system_get_free_heap_size(void)  __attribute__ ((deprecated));
+          ^
+src\cli.cpp:84:30: warning: 'uint32_t system_get_free_heap_size()' is deprecated [-Wdeprecated-declarations]
+             size_t freeRam = system_get_free_heap_size();
+                              ^
+In file included from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/portable.h:128:0,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/FreeRTOS.h:105,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32/Arduino.h:32,
+                 from src\cli.h:10,
+                 from src\cli.cpp:8:
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\esp32/esp_system.h:152:10: note: declared here
+ uint32_t system_get_free_heap_size(void)  __attribute__ ((deprecated));
+          ^
+src\cli.cpp:84:56: warning: 'uint32_t system_get_free_heap_size()' is deprecated [-Wdeprecated-declarations]
+             size_t freeRam = system_get_free_heap_size();
+                                                        ^
+In file included from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/portable.h:128:0,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\freertos/freertos/FreeRTOS.h:105,
+                 from C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32/Arduino.h:32,
+                 from src\cli.h:10,
+                 from src\cli.cpp:8:
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\tools\sdk\include\esp32/esp_system.h:152:10: note: declared here
+ uint32_t system_get_free_heap_size(void)  __attribute__ ((deprecated));
+          ^
+src\cli.cpp: In lambda function:
+src\cli.cpp:404:24: warning: unused variable 'read' [-Wunused-variable]
+                 size_t read = spiffs::streamRead(buffer, len);
+                        ^
+Compiling .pio\build\esp32doit-devkit-v1\src\esp_duck.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\settings.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\spiffs.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\webserver.cpp.o
+Generating partitions .pio\build\esp32doit-devkit-v1\partitions.bin
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\Argument.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\Command.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\CommandError.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\SimpleCLI.cpp.o
+src\settings.cpp: In function 'void settings::reset()':
+src\settings.cpp:46:38: warning: statement has no effect [-Wunused-value]
+         debugln("Resetting Settings");
+                                      ^
+src\settings.cpp: In function 'void settings::save()':
+src\settings.cpp:54:35: warning: statement has no effect [-Wunused-value]
+         debugln("Saving Settings");
+                                   ^
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\arg.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\cmd.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\cmd_error.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\comparator.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\parser.c.o
+Compiling .pio\build\esp32doit-devkit-v1\libb5f\AsyncTCP\AsyncTCP.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb9a\FS\FS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb9a\FS\vfs_api.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\ETH.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFi.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiAP.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib176\libSimpleCLI.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiClient.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiGeneric.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiMulti.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb9a\libFS.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiSTA.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiScan.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb5f\libAsyncTCP.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiServer.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiUdp.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\AsyncEventSource.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\AsyncWebSocket.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\SPIFFSEditor.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebAuthentication.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebHandlers.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebRequest.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebResponses.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb1c\libWiFi.a
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebServer.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib068\Wire\Wire.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib178\Update\HttpsOTAUpdate.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib178\Update\Updater.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libcf5\ESPmDNS\ESPmDNS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\liba79\ArduinoOTA\ArduinoOTA.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libd96\DNSServer\DNSServer.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libFrameworkArduinoVariant.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Esp.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib068\libWire.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\FunctionalInterrupt.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\HardwareSerial.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib178\libUpdate.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\IPAddress.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\IPv6Address.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libcf5\libESPmDNS.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\MD5Builder.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\liba79\libArduinoOTA.a
+Archiving .pio\build\esp32doit-devkit-v1\libd96\libDNSServer.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Print.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Stream.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\StreamString.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\WMath.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib632\libESP Async WebServer.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\WString.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\base64.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\cbuf.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-adc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-bt.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-cpu.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-dac.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-gpio.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-i2c.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-ledc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-log.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-matrix.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-misc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-psram.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-rmt.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-sigmadelta.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-spi.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-time.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-timer.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-touch.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-uart.c.o
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32\esp32-hal-spi.c: In function 'spiTransferBytesNL':
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32\esp32-hal-spi.c:922:39: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+                 uint8_t * last_out8 = &result[c_longs-1];
+                                       ^
+C:\Users\Justin\.platformio\packages\framework-arduinoespressif32\cores\esp32\esp32-hal-spi.c:923:40: warning: initialization from incompatible pointer type [-Wincompatible-pointer-types]
+                 uint8_t * last_data8 = &last_data;
+                                        ^
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\libb64\cdecode.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\libb64\cencode.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\main.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\stdlib_noniso.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\wiring_pulse.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\wiring_shift.c.o
+Archiving .pio\build\esp32doit-devkit-v1\libFrameworkArduino.a
+Linking .pio\build\esp32doit-devkit-v1\firmware.elf
+Retrieving maximum program size .pio\build\esp32doit-devkit-v1\firmware.elf
+Checking size .pio\build\esp32doit-devkit-v1\firmware.elf
+Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
+RAM:   [=         ]  14.9% (used 48828 bytes from 327680 bytes)
+Flash: [========= ]  85.3% (used 1117514 bytes from 1310720 bytes)
+Building .pio\build\esp32doit-devkit-v1\firmware.bin
+esptool.py v3.0
+===================================================================================================================== [SUCCESS] Took 48.71 seconds =====================================================================================================================
