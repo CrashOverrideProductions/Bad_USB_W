@@ -10,7 +10,7 @@
 <!-- Repo Stats -->
 <img align="center" src="https://img.shields.io/github/commit-activity/m/CrashOverrideProductions/Bad_USB_W"> <img align="center" src="https://img.shields.io/github/last-commit/CrashOverrideProductions/Bad_USB_W"> <img align="center" src="https://img.shields.io/github/languages/code-size/CrashOverrideProductions/Bad_USB_W"> <img align="center" src="https://img.shields.io/github/directory-file-count/CrashOverrideProductions/Bad_USB_W">
 
-### Details
+## Details
 The BadUSB is intended to be a budget alternative to the current offering of Keystroke Injection tools available on the market.
 
 ### What is a Keystroke Injection Attack?
@@ -20,7 +20,7 @@ This can be a vector for malicious code, and is potentially dangerous and destru
 
 ---
 <!-- To Do List -->
-### To Do List
+## To Do List
 - [X] Complete Readme.md
 - [X] Build & Test Prototype
 - [ ] Design Schematic
@@ -31,14 +31,12 @@ This can be a vector for malicious code, and is potentially dangerous and destru
 - [ ] Research Injection Moulded Shell
 
 ---
-### Prototype Design
+## Prototype Design
 
 <img align="center" src="https://raw.githubusercontent.com/CrashOverrideProductions/Bad_USB_W/main/images/proto1.jpg"/>
 
-```
-images go here
-```
-##### BOM
+
+### BOM
 ```
 | COMPONENT         | QTY | AUD$   |
 |===================|=====|========|
@@ -46,10 +44,10 @@ images go here
 | ARDUINO LEONARDO  |  1  | $29.95 |
 ```
 
-##### Software
+### Software
 The software for this project is a modified version of the WiFi Duck firmware developed by [SpaceHunn](https://github.com/SpacehuhnTech/WiFiDuck "SpaceHunn") released under the MIT Licence.
 
-##### Hardware Configuration
+### Hardware Configuration
 ```
 | LEONARDO          | ESP32 DEVKIT V1 | SIGNAL NAME |
 |===================|=================|=============|
