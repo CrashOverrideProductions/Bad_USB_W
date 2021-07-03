@@ -16,16 +16,203 @@
 // ESP32 Migration
 Date        File          Changes
 ==========  ============  ===================================================================
-01/07/2021    cli.cpp     Comment out xtern "C" functions
-01/07/2021    config.h    Enable Debugging
-                          Enable I2C & Set Pin SDA-21/SCL-22
-                          Change WiFi Settings (See WiFi Setting Below)
-                          Change Sanity Check to from ESP8266 to ESP32
-01/07/2021                Manually Add Libraries "EEPROM" & "SPIFFS"
-01/07/2021   eeprom.h     Change #include "<EEPROM.h>" to "#include "Libraries/EEPROM.h" "
-01/07/2021   spiffs.cpp   
+01/07/2021    cli.cpp         Comment out xtern "C" functions
+01/07/2021    config.h        Enable Debugging
+                              Enable I2C & Set Pin SDA-21/SCL-22
+                              Change WiFi Settings (See WiFi Setting Below)
+                              Change Sanity Check to from ESP8266 to ESP32
+01/07/2021                    Manually Add Libraries "EEPROM" & "SPIFFS"
+01/07/2021    eeprom.h        Change #include "<EEPROM.h>" to "#include "Libraries/EEPROM.h" "
+01/07/2021    spiffs.cpp      Append "FILE_NAME" var with ".txt"
+                              Change "size()" function to suit (See Addendum)
+                              Change "usedBytes()" function to suit (See Addendum)
+                              Change "freeBytes()" function to suit (See Addendum)
+                              Change "size(String fileName)" function to suit (See Addendum)
+                              Change "open(String fileName)" function to suit (See Addendum)
+                              Change "create(String fileName)" function to suit (See Addendum)
+                              Change "listDir(String dirName)" function to suit (See Addendum)
+01/07/2021    spiffs.h        Add "#include "Libraries/SPIFFS.h"" 
+                              Change "#include <FS.h>" to #include "Libraries/FS.h"
+01/07/2021    webserver.cpp   Change "#include <ESP8266WiFi.h>" to "#include <WiFi.h>"
+                              Change "#include <ESP8266mDNS.h>" to "#include <ESPmDNS.h>"
+                              Change "#include <ESPAsyncTCP.h>" to "#include <AsyncTCP.h>"
+                              omment out "Update.runAsync(true);"
+```
 
+ChangeLog Addendum
+``` C++
+spiffs.cpp
+=============================================================================================
+Change "size()" function to suit
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+          size_t size() {
+              FSInfo fs_info;
 
+              SPIFFS.info(fs_info);
+              return fs_info.totalBytes;
+          }
+
+      // NEW FUNCTION
+          size_t size() {
+              unsigned int totalBytes = SPIFFS.totalBytes();
+              return totalBytes;
+          }
+    -------------------------------------------------------------------------
+
+Change "usedBytes()" function to suit
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+          size_t usedBytes() {
+              FSInfo fs_info;
+
+              SPIFFS.info(fs_info);
+              return fs_info.usedBytes;
+          }
+
+      // NEW FUNCTION
+          size_t usedBytes() {
+            unsigned int usedBytes = SPIFFS.usedBytes();
+            return usedBytes;
+          }
+    -------------------------------------------------------------------------
+
+Change "freeBytes()" function to suit (See Addendum)
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+          size_t freeBytes() {
+                  FSInfo fs_info;
+
+                  SPIFFS.info(fs_info);
+                  return fs_info.totalBytes - fs_info.usedBytes;
+              }
+
+      // NEW FUNCTION
+          size_t freeBytes() {
+                  unsigned int totalBytes = SPIFFS.totalBytes();
+                  unsigned int usedBytes = SPIFFS.usedBytes();
+
+                  return (totalBytes - usedBytes);
+              }
+    -------------------------------------------------------------------------
+
+Change "size(String fileName)" function to suit (See Addendum)
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+            size_t size(String fileName) {
+                fixPath(fileName);
+
+                File f = SPIFFS.open(fileName, "r");
+
+                return f.size();
+            }
+
+      // NEW FUNCTION
+            size_t size(String fileName) {
+                fixPath(fileName);
+
+                File f = SPIFFS.open(fileName, FILE_READ);
+
+                return f.size();
+            }
+    -------------------------------------------------------------------------
+
+Change "open(String fileName)" function to suit (See Addendum)
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+            File open(String fileName) {
+                    fixPath(fileName);
+
+                    return SPIFFS.open(fileName, "a+");
+                }
+
+      // NEW FUNCTION
+            File open(String fileName) {
+                fixPath(fileName);
+
+                File file = SPIFFS.open(fileName, "r+");
+
+                return file;
+            }
+    -------------------------------------------------------------------------
+
+Change "create(String fileName)" function to suit (See Addendum)
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+            void create(String fileName) {
+              fixPath(fileName);
+
+              File f = SPIFFS.open(fileName, "a+");
+
+              f.close();
+            }
+
+      // NEW FUNCTION
+            void create(String fileName) {
+                    fixPath(fileName);
+
+                    File f = SPIFFS.open(fileName, FILE_APPEND);
+
+                    f.close();
+            }
+    -------------------------------------------------------------------------
+
+Change "listDir(String dirName)" function to suit (See Addendum)
+    -------------------------------------------------------------------------
+      // OLD FUNCTION
+            String listDir(String dirName) {
+              String res;
+
+              fixPath(dirName);
+
+              Dir dir = SPIFFS.openDir(dirName);
+
+              while (dir.next()) {
+                  res += dir.fileName();
+                  res += ' ';
+                  res += size(dir.fileName());
+                  res += '\n';
+              }
+
+              if (res.length() == 0) {
+                  res += "\n";
+              }
+
+              return res;
+            }
+      // NEW FUNCTION
+            String listDir(String dirName) {
+                String res;
+
+                fixPath(dirName);
+
+                File root = SPIFFS.open(dirName);
+              
+                if(!root)
+                {
+                  debugln("failed to open directory");
+                  return("Error!");
+              }
+
+                File file = root.openNextFile();
+                while(file)
+                {
+                    //debugln(file.name());
+                    res += file.name();
+                    res += ' ';
+                    res += size(file.name());
+                    res += '\n';
+                          
+                    file = root.openNextFile();
+                }
+
+                if (res.length() == 0) 
+                {
+                    res += "\n";
+                }
+                    return res;
+            }
+    -------------------------------------------------------------------------
 
 ```
 
