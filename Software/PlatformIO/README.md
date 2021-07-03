@@ -1,14 +1,32 @@
-# BadUSB-W Firmware <img align="right" src="https://github.com/CrashOverrideProductions/Tools/blob/main/Bad%20USB/images/logo.jpg?raw=true">
+# BadUSB-W Firmware <img align="right" src="https://github.com/CrashOverrideProductions/Bad_USB_W/blob/main/images/logo.jpg?raw=true">
 
 ### Project: PlatformIO Migration of BadUSB-W Firmware (WiFi Duck Modified) <img alt="" align="right" src="https://img.shields.io/badge/Status-Code%20Review-informational?style=flat&logoColor=white&color=0EF9421" />
 
 <img src="https://cdn.platformio.org/images/platformio-logo.17fdc3bc.png">
 
+#### NOTE: THIS FIRMWARE IS CURRENTLY BEING MODIFIED FOR USE ON AN ESP32
+
 #### ChangeLog
 ```c++
+// PlatformIO Migration
 22/05/2021  IMPORT SpacehuhnTech/WiFiDuck
 22/05/2021  MIGRATE ESP_DUCK TO PLATFORMIO
 22/05/2021  MIGRATE ATMEGA_DUCK TO PLATFORMIO
+
+// ESP32 Migration
+Date        File          Changes
+==========  ============  ===================================================================
+01/07/2021    cli.cpp     Comment out xtern "C" functions
+01/07/2021    config.h    Enable Debugging
+                          Enable I2C & Set Pin SDA-21/SCL-22
+                          Change WiFi Settings (See WiFi Setting Below)
+                          Change Sanity Check to from ESP8266 to ESP32
+01/07/2021                Manually Add Libraries "EEPROM" & "SPIFFS"
+01/07/2021   eeprom.h     Change #include "<EEPROM.h>" to "#include "Libraries/EEPROM.h" "
+01/07/2021   spiffs.cpp   
+
+
+
 ```
 
 #### Platform IO Build Status
@@ -80,194 +98,149 @@ Building .pio\build\leonardo\firmware.hex
 
 ##### ESP_DUCK
 ```c++
-Processing esp_wroom_02 (platform: espressif8266; board: esp_wroom_02; framework: arduino)
-------------------------------------------------------------------------------------------
-Verbose mode can be enabled via `-v, --verbose` option
-CONFIGURATION: https://docs.platformio.org/page/boards/espressif8266/esp_wroom_02.html
-PLATFORM: Espressif 8266 (2.6.3) > ESP-WROOM-02
-HARDWARE: ESP8266 80MHz, 80KB RAM, 2MB Flash
+
+Processing esp32doit-devkit-v1 (platform: espressif32; board: esp32doit-devkit-v1; framework: arduino)
+-----------------------------------------------------------------------------------------------------------------Verbose mode can be enabled via `-v, --verbose` option
+CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32doit-devkit-v1.html
+PLATFORM: Espressif 32 (3.2.1) > DOIT ESP32 DEVKIT V1
+HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
+DEBUG: Current (esp-prog) External (esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
 PACKAGES:
- - framework-arduinoespressif8266 3.20704.0 (2.7.4)
- - tool-esptool 1.413.0 (4.13)
+ - framework-arduinoespressif32 3.10006.210326 (1.0.6)
  - tool-esptoolpy 1.30000.201119 (3.0.0)
- - toolchain-xtensa 2.40802.200502 (4.8.2)
+ - toolchain-xtensa32 2.50200.97 (5.2.0)
 LDF: Library Dependency Finder -> http://bit.ly/configure-pio-ldf
 LDF Modes: Finder ~ chain, Compatibility ~ soft
-Found 32 compatible libraries
+Found 31 compatible libraries
 Scanning dependencies...
 Dependency Graph
-|-- <ESP Async WebServer> 1.2.3
-|   |-- <ESPAsyncTCP> 1.2.2
-|   |   |-- <ESP8266WiFi> 1.0
-|   |-- <Hash> 1.0
-|   |-- <ESP8266WiFi> 1.0
-|-- <ESPAsyncTCP> 1.2.2
-|   |-- <ESP8266WiFi> 1.0
 |-- <SimpleCLI> 1.1.1
-|-- <EEPROM> 1.0
-|-- <Wire> 1.0
+|-- <ESP Async WebServer> 1.2.3
+|   |-- <AsyncTCP> 1.1.1       
+|   |-- <FS> 1.0
+|   |-- <WiFi> 1.0
+|-- <Wire> 1.0.1
 |-- <ArduinoOTA> 1.0
-|   |-- <ESP8266WiFi> 1.0
-|   |-- <ESP8266mDNS> 1.2
-|   |   |-- <ESP8266WiFi> 1.0
-|-- <DNSServer> 1.1.1
-|   |-- <ESP8266WiFi> 1.0
-|-- <ESP8266mDNS> 1.2
-|   |-- <ESP8266WiFi> 1.0
-|-- <ESP8266WiFi> 1.0
+|   |-- <Update> 1.0
+|   |-- <WiFi> 1.0
+|   |-- <ESPmDNS> 1.0
+|   |   |-- <WiFi> 1.0
+|-- <AsyncTCP> 1.1.1
+|-- <DNSServer> 1.1.0
+|   |-- <WiFi> 1.0
+|-- <ESPmDNS> 1.0
+|   |-- <WiFi> 1.0
+|-- <WiFi> 1.0
 Building in release mode
-Compiling .pio\build\esp_wroom_02\src\EEPROM\EEPROM.cpp.o
-Compiling .pio\build\esp_wroom_02\src\cli.cpp.o
-Compiling .pio\build\esp_wroom_02\src\com.cpp.o
-Compiling .pio\build\esp_wroom_02\src\duckscript.cpp.o
-Compiling .pio\build\esp_wroom_02\src\eeprom.cpp.o
-Compiling .pio\build\esp_wroom_02\src\esp_duck.cpp.o
-Compiling .pio\build\esp_wroom_02\src\settings.cpp.o
-Compiling .pio\build\esp_wroom_02\src\spiffs.cpp.o
-Compiling .pio\build\esp_wroom_02\src\webserver.cpp.o
-Generating LD script .pio\build\esp_wroom_02\ld\local.eagle.app.v6.common.ld
-In file included from src\duckscript.h:8:0,
-                 from src\duckscript.cpp:6:
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFi.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiAP.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiGratuitous.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiMulti.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiSTA-WPS.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiSTA.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\ESP8266WiFiScan.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiClient.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiClientSecureAxTLS.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiClientSecureBearSSL.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiServer.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiServerSecureAxTLS.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiServerSecureBearSSL.cpp.o
-Compiling .pio\build\esp_wroom_02\lib5a1\ESP8266WiFi\WiFiUdp.cpp.o
-Compiling .pio\build\esp_wroom_02\libcb0\ESPAsyncTCP\AsyncPrinter.cpp.o
-Compiling .pio\build\esp_wroom_02\libcb0\ESPAsyncTCP\ESPAsyncTCP.cpp.o
-Compiling .pio\build\esp_wroom_02\libcb0\ESPAsyncTCP\ESPAsyncTCPbuffer.cpp.o
-Compiling .pio\build\esp_wroom_02\libcb0\ESPAsyncTCP\SyncClient.cpp.o
-Compiling .pio\build\esp_wroom_02\libcb0\ESPAsyncTCP\tcp_axtls.c.o
-Compiling .pio\build\esp_wroom_02\lib814\Hash\Hash.cpp.o
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\AsyncEventSource.cpp.o
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\AsyncWebSocket.cpp.o
-Archiving .pio\build\esp_wroom_02\lib5a1\libESP8266WiFi.a
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\SPIFFSEditor.cpp.o
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\WebAuthentication.cpp.o
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\WebHandlers.cpp.o
-Archiving .pio\build\esp_wroom_02\lib814\libHash.a
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\WebRequest.cpp.o
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\WebResponses.cpp.o
-Archiving .pio\build\esp_wroom_02\libcb0\libESPAsyncTCP.a
-Compiling .pio\build\esp_wroom_02\libc79\ESP Async WebServer\WebServer.cpp.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\Argument.cpp.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\Command.cpp.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\CommandError.cpp.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\SimpleCLI.cpp.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\c\arg.c.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\c\cmd.c.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\c\cmd_error.c.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\c\comparator.c.o
-Compiling .pio\build\esp_wroom_02\lib40a\SimpleCLI\c\parser.c.o
-Compiling .pio\build\esp_wroom_02\libe6e\EEPROM\EEPROM.cpp.o
-Compiling .pio\build\esp_wroom_02\lib330\Wire\Wire.cpp.o
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\ESP8266mDNS.cpp.o
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\ESP8266mDNS_Legacy.cpp.o
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\LEAmDNS.cpp.o
-Archiving .pio\build\esp_wroom_02\lib40a\libSimpleCLI.a
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\LEAmDNS_Control.cpp.o
-Archiving .pio\build\esp_wroom_02\libc79\libESP Async WebServer.a
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\LEAmDNS_Helpers.cpp.o
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\LEAmDNS_Structs.cpp.o
-Archiving .pio\build\esp_wroom_02\libe6e\libEEPROM.a
-Compiling .pio\build\esp_wroom_02\lib2de\ESP8266mDNS\LEAmDNS_Transfer.cpp.o
-Archiving .pio\build\esp_wroom_02\lib330\libWire.a
-Compiling .pio\build\esp_wroom_02\lib15e\ArduinoOTA\ArduinoOTA.cpp.o
-Compiling .pio\build\esp_wroom_02\lib35f\DNSServer\DNSServer.cpp.o
-Archiving .pio\build\esp_wroom_02\libFrameworkArduinoVariant.a
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Crypto.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Esp-frag.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Esp-version.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Esp.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\FS.cpp.o
-Archiving .pio\build\esp_wroom_02\lib35f\libDNSServer.a
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\FSnoop.cpp.o
-Archiving .pio\build\esp_wroom_02\lib2de\libESP8266mDNS.a
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\FunctionalInterrupt.cpp.o
-Archiving .pio\build\esp_wroom_02\lib15e\libArduinoOTA.a
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\HardwareSerial.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\IPAddress.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\MD5Builder.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Print.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Schedule.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\StackThunk.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Stream.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\StreamString.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Tone.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\TypeConversion.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\Updater.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\WMath.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\WString.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\abi.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\base64.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\cbuf.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\cont.S.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\cont_util.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_app_entry_noextra4k.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_eboot_command.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_features.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_flash_quirks.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_flash_utils.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_i2s.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_main.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_noniso.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_phy.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_postmortem.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_si2c.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_sigma_delta.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_spi_utils.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_timer.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_waveform.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring_analog.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring_digital.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring_pulse.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring_pwm.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\core_esp8266_wiring_shift.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\crc32.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\debug.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\flash_hal.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\gdb_hooks.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\heap.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\libb64\cdecode.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\libb64\cencode.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\libc_replacements.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\sntp-lwip2.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs\spiffs_cache.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs\spiffs_check.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs\spiffs_gc.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs\spiffs_hydrogen.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs\spiffs_nucleus.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\spiffs_api.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\sqrt32.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\time.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\uart.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\umm_malloc\umm_info.c.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\umm_malloc\umm_integrity.c.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\umm_malloc\umm_local.c.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\umm_malloc\umm_malloc.cpp.o
-Compiling .pio\build\esp_wroom_02\FrameworkArduino\umm_malloc\umm_poison.c.o
-Archiving .pio\build\esp_wroom_02\libFrameworkArduino.a
-Linking .pio\build\esp_wroom_02\firmware.elf
-Retrieving maximum program size .pio\build\esp_wroom_02\firmware.elf
-Checking size .pio\build\esp_wroom_02\firmware.elf
-Building .pio\build\esp_wroom_02\firmware.bin
-Creating BIN file ".pio\build\esp_wroom_02\firmware.bin" using "C:\Users\Justin\.
-  platformio\packages\framework-arduinoespressif8266\bootloaders\eboot\eboot.elf" 
-    and ".pio\build\esp_wroom_02\firmware.elf"
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\EEPROM.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\FS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\SPIFFS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\Libraries\vfs_api.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\cli.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\com.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\duckscript.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\eeprom.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\esp_duck.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\settings.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\spiffs.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\src\webserver.cpp.o
+Generating partitions .pio\build\esp32doit-devkit-v1\partitions.bin
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\Argument.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\Command.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\CommandError.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\SimpleCLI.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\arg.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\cmd.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\cmd_error.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\comparator.c.o
+Compiling .pio\build\esp32doit-devkit-v1\lib176\SimpleCLI\c\parser.c.o
+Compiling .pio\build\esp32doit-devkit-v1\libb5f\AsyncTCP\AsyncTCP.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb9a\FS\FS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb9a\FS\vfs_api.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\ETH.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFi.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiAP.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib176\libSimpleCLI.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiClient.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiGeneric.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiMulti.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb9a\libFS.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiSTA.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiScan.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb5f\libAsyncTCP.a
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiServer.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libb1c\WiFi\WiFiUdp.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\AsyncEventSource.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\AsyncWebSocket.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\SPIFFSEditor.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebAuthentication.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebHandlers.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebRequest.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebResponses.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libb1c\libWiFi.a
+Compiling .pio\build\esp32doit-devkit-v1\lib632\ESP Async WebServer\WebServer.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib068\Wire\Wire.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib178\Update\HttpsOTAUpdate.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\lib178\Update\Updater.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libcf5\ESPmDNS\ESPmDNS.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\liba79\ArduinoOTA\ArduinoOTA.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\libd96\DNSServer\DNSServer.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libFrameworkArduinoVariant.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Esp.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib068\libWire.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\FunctionalInterrupt.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\HardwareSerial.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib178\libUpdate.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\IPAddress.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\IPv6Address.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\libcf5\libESPmDNS.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\MD5Builder.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\liba79\libArduinoOTA.a
+Archiving .pio\build\esp32doit-devkit-v1\libd96\libDNSServer.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Print.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\Stream.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\StreamString.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\WMath.cpp.o
+Archiving .pio\build\esp32doit-devkit-v1\lib632\libESP Async WebServer.a
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\WString.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\base64.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\cbuf.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-adc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-bt.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-cpu.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-dac.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-gpio.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-i2c.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-ledc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-log.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-matrix.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-misc.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-psram.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-rmt.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-sigmadelta.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-spi.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-time.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-timer.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-touch.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\esp32-hal-uart.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\libb64\cdecode.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\libb64\cencode.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\main.cpp.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\stdlib_noniso.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\wiring_pulse.c.o
+Compiling .pio\build\esp32doit-devkit-v1\FrameworkArduino\wiring_shift.c.o
+Archiving .pio\build\esp32doit-devkit-v1\libFrameworkArduino.a
+Linking .pio\build\esp32doit-devkit-v1\firmware.elf
+Retrieving maximum program size .pio\build\esp32doit-devkit-v1\firmware.elf
+Checking size .pio\build\esp32doit-devkit-v1\firmware.elf
 Advanced Memory Usage is available via "PlatformIO Home > Project Inspect"
-RAM:   [=====     ]  46.6% (used 38176 bytes from 81920 bytes)
-Flash: [=====     ]  50.6% (used 528800 bytes from 1044464 bytes)
-============================= [SUCCESS] Took 30.37 seconds ===============================
+RAM:   [=         ]  14.9% (used 48828 bytes from 327680 bytes)
+Flash: [========= ]  85.3% (used 1117514 bytes from 1310720 bytes)
+Building .pio\build\esp32doit-devkit-v1\firmware.bin
+esptool.py v3.0
+================================================================================================================
+                                        [SUCCESS] Took 48.71 seconds 
+================================================================================================================
 ```
 
 
