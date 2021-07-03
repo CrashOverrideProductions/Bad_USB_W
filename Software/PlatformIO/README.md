@@ -287,11 +287,13 @@ Building .pio\build\leonardo\firmware.hex
 ```c++
 
 Processing esp32doit-devkit-v1 (platform: espressif32; board: esp32doit-devkit-v1; framework: arduino)
------------------------------------------------------------------------------------------------------------------Verbose mode can be enabled via `-v, --verbose` option
+------------------------------------------------------------------------------------------------------
+Verbose mode can be enabled via `-v, --verbose` option
 CONFIGURATION: https://docs.platformio.org/page/boards/espressif32/esp32doit-devkit-v1.html
 PLATFORM: Espressif 32 (3.2.1) > DOIT ESP32 DEVKIT V1
 HARDWARE: ESP32 240MHz, 320KB RAM, 4MB Flash
-DEBUG: Current (esp-prog) External (esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd, olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
+DEBUG: Current (esp-prog) External (esp-prog, iot-bus-jtag, jlink, minimodule, olimex-arm-usb-ocd,
+ olimex-arm-usb-ocd-h, olimex-arm-usb-tiny-h, olimex-jtag-tiny, tumpa)
 PACKAGES:
  - framework-arduinoespressif32 3.10006.210326 (1.0.6)
  - tool-esptoolpy 1.30000.201119 (3.0.0)
