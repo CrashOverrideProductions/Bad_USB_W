@@ -216,6 +216,15 @@ Change "listDir(String dirName)" function to suit (See Addendum)
 
 ```
 
+#### WiFi Settings
+```python
+WIFI_SSID       "BadUSBw"
+WIFI_PASSWORD   "BadUSBW"
+WIFI_CHANNEL    "1"
+HOSTNAME        "badusb"
+URL             "bad.usb"
+```
+
 #### Platform IO Build Status
 ##### ATMEGA_DUCK
 ```c++
