@@ -14,8 +14,8 @@
 22/05/2021  MIGRATE ATMEGA_DUCK TO PLATFORMIO
 
 // ESP32 Migration
-Date        File          Changes
-==========  ============  ===================================================================
+Date          File            Changes
+==========    ============    ===================================================================
 01/07/2021    cli.cpp         Comment out xtern "C" functions
 01/07/2021    config.h        Enable Debugging
                               Enable I2C & Set Pin SDA-21/SCL-22
