@@ -22,7 +22,7 @@ Date          File            Changes
                               Change WiFi Settings (See WiFi Setting Below)
                               Change Sanity Check to from ESP8266 to ESP32
 01/07/2021                    Manually Add Libraries "EEPROM" & "SPIFFS"
-01/07/2021    eeprom.h        Change #include "<EEPROM.h>" to "#include "Libraries/EEPROM.h" "
+01/07/2021    eeprom.h        Change "#include <EEPROM.h>" to "#include "Libraries/EEPROM.h" "
 01/07/2021    spiffs.cpp      Append "FILE_NAME" var with ".txt"
                               Change "size()" function to suit (See Addendum)
                               Change "usedBytes()" function to suit (See Addendum)

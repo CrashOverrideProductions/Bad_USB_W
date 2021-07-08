@@ -35,12 +35,16 @@
 #define BOOT_MAGIC_NUM    1234567890
 
 /*! ===== WiFi Settings ===== */
-#define WIFI_SSID "BadUSBw"
-#define WIFI_PASSWORD "BadUSBW"
+#define WIFI_SSID "wifiduck"
+//#define WIFI_SSID "bad-usb-w"
+
+#define WIFI_PASSWORD "wifiduck"
+//#define WIFI_PASSWORD "bad-usb-w"
+
 #define WIFI_CHANNEL "1"
 
-#define HOSTNAME "badusb"
-#define URL "bad.usb"
+#define HOSTNAME "wifiduck"
+#define URL "wifi.duck"
 
 /*! ========== Safty checks ========== */
 #if !defined(ENABLE_I2C) && !defined(ENABLE_SERIAL)
